@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmu.Mls2.WebApi", "Sources\WebApi\Mmu.Mls2.WebApi.csproj", "{5113F80D-F569-4FAE-8D7D-B0F2780E6C20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{C24A06BF-8A28-4506-AA11-A81A4F46E3F3}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		CA_ProductionCode.ruleset = CA_ProductionCode.ruleset
+		Settings.StyleCop = Settings.StyleCop
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5113F80D-F569-4FAE-8D7D-B0F2780E6C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5113F80D-F569-4FAE-8D7D-B0F2780E6C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5113F80D-F569-4FAE-8D7D-B0F2780E6C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5113F80D-F569-4FAE-8D7D-B0F2780E6C20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15F1404A-E938-410A-BEAD-A86CF8799D7D}
+	EndGlobalSection
+EndGlobal
