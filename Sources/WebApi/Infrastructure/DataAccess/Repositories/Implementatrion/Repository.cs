@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
+using Mmu.Mlh.LanguageExtensions.Areas.Specifications;
 using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers;
-using Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.ModelAbstractions;
-using Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.Specifications;
 using MongoDB.Driver;
 
 namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion

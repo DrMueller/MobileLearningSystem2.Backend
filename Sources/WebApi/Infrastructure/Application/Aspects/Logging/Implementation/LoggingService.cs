@@ -1,6 +1,6 @@
 ﻿using System;
+using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 using Mmu.Mls2.WebApi.Infrastructure.Application.Aspects.Logging.Handlers;
-using Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.Invariance;
 
 namespace Mmu.Mls2.WebApi.Infrastructure.Application.Aspects.Logging.Implementation
 {
@@ -8,10 +8,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.Application.Aspects.Logging.Implementat
     {
         private readonly ILoggerProxy _logProxy;
 
-        public LoggingService(ILoggerProxy logProxy)
-        {
-            _logProxy = logProxy;
-        }
+        public LoggingService(ILoggerProxy logProxy) => _logProxy = logProxy;
 
         public void LogException(Exception ex)
         {

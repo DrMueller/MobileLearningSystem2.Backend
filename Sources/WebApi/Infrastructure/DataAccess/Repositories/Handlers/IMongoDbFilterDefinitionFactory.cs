@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.ModelAbstractions;
+using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
 using MongoDB.Driver;
 
 namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers

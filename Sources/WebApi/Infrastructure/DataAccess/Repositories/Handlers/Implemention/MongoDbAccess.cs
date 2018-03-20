@@ -1,6 +1,6 @@
-﻿using Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Models;
+﻿using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
+using Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Models;
 using Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Services;
-using Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.ModelAbstractions;
 using MongoDB.Driver;
 
 namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers.Implemention

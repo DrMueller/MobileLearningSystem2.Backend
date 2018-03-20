@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.ModelAbstractions;
+using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
 
 namespace Mmu.Mls2.WebApi.Areas.Domain.Models
 {
@@ -7,10 +7,7 @@ namespace Mmu.Mls2.WebApi.Areas.Domain.Models
     {
         private List<long> _factIds;
 
-        public LearningSession()
-        {
-            _factIds = new List<long>();
-        }
+        public LearningSession(string id) : base(id) => _factIds = new List<long>();
 
         public IReadOnlyCollection<long> FactIds => _factIds;
 

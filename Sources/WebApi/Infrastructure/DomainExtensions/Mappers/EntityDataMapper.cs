@@ -1,5 +1,5 @@
-﻿using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataMapping;
-using Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.ModelAbstractions;
+﻿using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataMapping;
 using MongoDB.Bson.Serialization;
 
 namespace Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.Mappers

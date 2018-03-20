@@ -1,7 +1,6 @@
-﻿using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataMapping;
-using Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.ModelAbstractions;
+﻿using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataMapping;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.Mappers
 {
@@ -13,7 +12,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.Mappers
                 f =>
                 {
                     f.AutoMap();
-                    f.MapIdMember(c => c.Id).SetIdGenerator(new StringObjectIdGenerator());
+                    //f.MapIdMember(c => c.Id);
                     f.MapMember(c => c.AggregateTypeName);
                 });
         }
