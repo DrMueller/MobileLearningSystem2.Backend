@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
-using Mmu.Mlh.LanguageExtensions.Areas.Specifications;
 using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers;
 using MongoDB.Driver;
 
@@ -34,11 +33,10 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion
             return result;
         }
 
-        public async Task<IReadOnlyCollection<T>> LoadAsync(ISpecification<T> spec)
+        public async Task<IReadOnlyCollection<T>> LoadAsync(Expression<Func<T, bool>> predicate)
         {
             var collection = _mongoDbAccess.GetDatabaseCollection<T>();
 
-            var predicate = spec.ToExpression();
             var filter = _filterFactory.CreateFilterDefinition(predicate);
             var result = await collection.Find(filter).ToListAsync();
             return result;
@@ -51,9 +49,9 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion
             return result;
         }
 
-        public async Task<T> LoadSingleAsync(ISpecification<T> spec)
+        public async Task<T> LoadSingleAsync(Expression<Func<T, bool>> predicate)
         {
-            var allResults = await LoadAsync(spec);
+            var allResults = await LoadAsync(predicate);
             var result = allResults.SingleOrDefault();
             return result;
         }
@@ -61,14 +59,9 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion
         public async Task<T> SaveAsync(T aggregateRoot)
         {
             var collection = _mongoDbAccess.GetDatabaseCollection<T>();
-            if (string.IsNullOrWhiteSpace(aggregateRoot.Id))
-            {
-                await collection.InsertOneAsync(aggregateRoot);
-                return aggregateRoot;
-            }
 
             var filter = _filterFactory.CreateFilterDefinition(x => x.Id == aggregateRoot.Id);
-            var updateOptions = new FindOneAndReplaceOptions<T> { IsUpsert = false, ReturnDocument = ReturnDocument.After };
+            var updateOptions = new FindOneAndReplaceOptions<T> { IsUpsert = true, ReturnDocument = ReturnDocument.After };
             var result = await collection.FindOneAndReplaceAsync(filter, aggregateRoot, updateOptions);
             return result;
         }

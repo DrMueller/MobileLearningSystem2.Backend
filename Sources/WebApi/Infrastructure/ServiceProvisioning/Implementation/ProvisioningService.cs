@@ -9,10 +9,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.ServiceProvisioning.Implementation
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public ProvisioningService(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
+        public ProvisioningService(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
         public IReadOnlyCollection<T> GetAllServices<T>()
         {

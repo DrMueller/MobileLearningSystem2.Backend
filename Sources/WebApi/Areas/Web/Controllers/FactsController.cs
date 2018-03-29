@@ -10,30 +10,13 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
     {
         private readonly IFactService _factService;
 
-        public FactsController(IFactService factService)
-        {
-            _factService = factService;
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateFactAsync([FromBody] FactDto dto)
-        {
-            await _factService.UpdateFactAsync(dto);
-            return Ok();
-        }
+        public FactsController(IFactService factService) => _factService = factService;
 
         [HttpPost]
         public async Task<IActionResult> CreateFactAsync([FromBody] NewFactDto dto)
         {
             await _factService.CreateFactAsync(dto);
             return Ok();
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetFactByIdAsync([FromRoute] string id)
-        {
-            var factDto = await _factService.LoadFactByIdAsync(id);
-            return Ok(factDto);
         }
 
         [HttpDelete("{id}")]
@@ -48,6 +31,20 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
         {
             var allFactDtos = await _factService.LoadAllFactsAsync();
             return Ok(allFactDtos);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetFactByIdAsync([FromRoute] string id)
+        {
+            var factDto = await _factService.LoadFactByIdAsync(id);
+            return Ok(factDto);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateFactAsync([FromBody] FactDto dto)
+        {
+            await _factService.UpdateFactAsync(dto);
+            return Ok();
         }
     }
 }

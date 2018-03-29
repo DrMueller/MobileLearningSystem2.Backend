@@ -11,10 +11,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.RestProxy.Services.Implementation
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public RestProxy(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
+        public RestProxy(IHttpClientFactory httpClientFactory) => _httpClientFactory = httpClientFactory;
 
         public async Task<T> PerformApiCallAsync<T>(RestApiCall restApiCall)
         {

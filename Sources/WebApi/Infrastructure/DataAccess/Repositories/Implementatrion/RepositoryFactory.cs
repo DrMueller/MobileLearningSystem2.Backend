@@ -7,10 +7,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion
     {
         private readonly IProvisioningService _provisioningService;
 
-        public RepositoryFactory(IProvisioningService provisioningService)
-        {
-            _provisioningService = provisioningService;
-        }
+        public RepositoryFactory(IProvisioningService provisioningService) => _provisioningService = provisioningService;
 
         public IRepository<T> CreateRepository<T>() where T : AggregateRoot
         {

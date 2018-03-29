@@ -8,10 +8,7 @@ namespace Mmu.Mls2.WebApi.Areas.Domain.Factories.Implementation
     {
         private readonly IEntityIdFactory _entityIdFactory;
 
-        public FactFactory(IEntityIdFactory entityIdFactory)
-        {
-            _entityIdFactory = entityIdFactory;
-        }
+        public FactFactory(IEntityIdFactory entityIdFactory) => _entityIdFactory = entityIdFactory;
 
         public Fact CreateFact(string questionText, string answerText)
         {

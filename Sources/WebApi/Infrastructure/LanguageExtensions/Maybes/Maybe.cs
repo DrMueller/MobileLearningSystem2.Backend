@@ -26,37 +26,25 @@ namespace Mmu.Mls2.WebApi.Infrastructure.LanguageExtensions.Maybes
             return obj.GetType() == GetType() && Equals((Maybe<T>)obj);
         }
 
+        public abstract TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone);
+
+        public abstract void Evaluate(Action<T> whenSome = null, Action whenNone = null);
+
         public abstract override int GetHashCode();
 
         public abstract Maybe<TNew> Map<TNew>(Func<T, TNew> mapping);
 
-        public static bool operator ==(Maybe<T> a, Maybe<T> b)
-        {
-            return (ReferenceEquals(null, a) && ReferenceEquals(null, b)) ||
-                (!ReferenceEquals(null, a) && a.Equals(b));
-        }
+        public static bool operator ==(Maybe<T> a, Maybe<T> b) => ReferenceEquals(null, a) && ReferenceEquals(null, b) ||
+            !ReferenceEquals(null, a) && a.Equals(b);
 
-        public static bool operator ==(Maybe<T> a, T b)
-        {
-            return !ReferenceEquals(null, a) && a.Equals(b);
-        }
+        public static bool operator ==(Maybe<T> a, T b) => !ReferenceEquals(null, a) && a.Equals(b);
 
-        public static bool operator !=(Maybe<T> a, Maybe<T> b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(Maybe<T> a, Maybe<T> b) => !(a == b);
 
-        public static bool operator !=(Maybe<T> a, T b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(Maybe<T> a, T b) => !(a == b);
 
         public abstract T Reduce(Func<T> whenNone);
 
         public abstract T Reduce(T whenNone);
-
-        public abstract TResult Evaluate<TResult>(Func<T, TResult> whenSome, Func<TResult> whenNone);
-
-        public abstract void Evaluate(Action<T> whenSome = null, Action whenNone = null);
     }
 }

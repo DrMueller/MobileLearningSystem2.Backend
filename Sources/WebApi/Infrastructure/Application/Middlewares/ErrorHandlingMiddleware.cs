@@ -12,10 +12,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.Application.Middlewares
     {
         private readonly RequestDelegate _next;
 
-        public ErrorHandlingMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
+        public ErrorHandlingMiddleware(RequestDelegate next) => _next = next;
 
         public async Task Invoke(HttpContext context)
         {

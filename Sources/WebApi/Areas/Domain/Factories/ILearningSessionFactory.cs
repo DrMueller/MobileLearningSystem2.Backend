@@ -2,8 +2,8 @@
 
 namespace Mmu.Mls2.WebApi.Areas.Domain.Factories
 {
-    public interface IFactFactory
+    public interface ILearningSessionFactory
     {
-        Fact CreateFact(string questionText, string answerText);
+        LearningSession CreateLearningSession(string sessionName);
     }
 }

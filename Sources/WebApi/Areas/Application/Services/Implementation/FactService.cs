@@ -34,7 +34,6 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
         public async Task DeleteFactAsync(string id)
         {
             Guard.StringNotNullOrEmpty(() => id);
-
             await _factRepository.DeleteAsync(id);
         }
 

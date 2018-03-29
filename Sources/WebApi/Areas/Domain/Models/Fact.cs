@@ -13,7 +13,6 @@ namespace Mmu.Mls2.WebApi.Areas.Domain.Models
             DateTime creationDate) : base(id)
         {
             Guard.StringNotNullOrEmpty(() => questionText);
-            Guard.StringNotNullOrEmpty(() => anwerText);
 
             QuestionText = questionText;
             AnswerText = anwerText;

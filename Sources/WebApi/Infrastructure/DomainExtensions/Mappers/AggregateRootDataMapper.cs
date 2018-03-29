@@ -12,7 +12,6 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DomainExtensions.Mappers
                 f =>
                 {
                     f.AutoMap();
-                    //f.MapIdMember(c => c.Id);
                     f.MapMember(c => c.AggregateTypeName);
                 });
         }

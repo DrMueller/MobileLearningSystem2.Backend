@@ -8,12 +8,12 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services
     {
         Task CreateFactAsync(NewFactDto dto);
 
+        Task DeleteFactAsync(string id);
+
         Task<IReadOnlyCollection<FactDto>> LoadAllFactsAsync();
 
         Task<FactDto> LoadFactByIdAsync(string id);
 
         Task UpdateFactAsync(FactDto dto);
-
-        Task DeleteFactAsync(string id);
     }
 }
