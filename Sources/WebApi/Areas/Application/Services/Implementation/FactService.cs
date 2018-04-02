@@ -25,7 +25,7 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
             _factRepository = factRepository;
         }
 
-        public async Task CreateFactAsync(NewFactDto dto)
+        public async Task CreateFactAsync(FactDto dto)
         {
             var fact = _factFactory.CreateFact(dto.QuestionText, dto.AnswerText);
             await _factRepository.SaveAsync(fact);
@@ -45,7 +45,7 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
             return result;
         }
 
-        public async Task<FactDto> LoadFactByIdAsync(string id)
+        public async Task<FactDto> LoadFactbyIdAsync(string id)
         {
             var fact = await _factRepository.LoadByIdAsync(id);
             var result = _mapper.Map<FactDto>(fact);

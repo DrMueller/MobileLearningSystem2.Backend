@@ -13,7 +13,7 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
         public FactsController(IFactService factService) => _factService = factService;
 
         [HttpPost]
-        public async Task<IActionResult> CreateFactAsync([FromBody] NewFactDto dto)
+        public async Task<IActionResult> CreateFactAsync([FromBody] FactDto dto)
         {
             await _factService.CreateFactAsync(dto);
             return Ok();
@@ -36,7 +36,7 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFactByIdAsync([FromRoute] string id)
         {
-            var factDto = await _factService.LoadFactByIdAsync(id);
+            var factDto = await _factService.LoadFactbyIdAsync(id);
             return Ok(factDto);
         }
 

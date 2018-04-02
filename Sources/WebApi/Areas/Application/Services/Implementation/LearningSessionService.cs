@@ -29,10 +29,13 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
             _factRepository = factRepository;
         }
 
-        public async Task CreateLearningSessionAsync(NewLearningSessionDto dto)
+        public async Task<LearningSessionDto> CreateLearningSessionAsync(LearningSessionDto dto)
         {
             var learningSession = _learningSessionFactory.CreateLearningSession(dto.SessionName);
-            await _learningSessionRepository.SaveAsync(learningSession);
+            var learningSessionFromDb = await _learningSessionRepository.SaveAsync(learningSession);
+
+            var result = _mapper.Map<LearningSessionDto>(learningSessionFromDb);
+            return result;
         }
 
         public async Task DeleteLearningSessionAsync(string id)
@@ -41,46 +44,57 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
             await _learningSessionRepository.DeleteAsync(id);
         }
 
-        public async Task<IReadOnlyCollection<LearningSessionOverviewEntryDto>> LoadAllOverviewEntriesAsync()
+        public async Task<IReadOnlyCollection<LearningSessionDto>> LoadAllLearningSessionAsync()
         {
             var allLearningSessions = await _learningSessionRepository.LoadAllAsync();
-            var result = _mapper.Map<List<LearningSessionOverviewEntryDto>>(allLearningSessions);
+            var result = _mapper.Map<List<LearningSessionDto>>(allLearningSessions);
 
             return result;
         }
 
-        public async Task<LearningSessionEditDto> LoadLearningSessionEditByIdAsync(string id)
+        public async Task<LearningSessionDto> LoadLearningSessionByIdAsync(string id)
         {
             var learningSession = await _learningSessionRepository.LoadByIdAsync(id);
-            var result = _mapper.Map<LearningSessionEditDto>(learningSession);
+            var result = _mapper.Map<LearningSessionDto>(learningSession);
 
             return result;
         }
 
-        public async Task<IReadOnlyCollection<LearningSessionRunFactDto>> LoadLearningSessionRunFactsAsync(string learningSessionId)
+        public async Task UpdateFactsAsync(string learningSessionId, IReadOnlyCollection<FactDto> facts)
+        {
+            Guard.StringNotNullOrEmpty(() => learningSessionId);
+            var learningSession = await _learningSessionRepository.LoadByIdAsync(learningSessionId);
+
+            var factIds = facts.Select(f => f.Id).ToList();
+            learningSession.AlignFacts(factIds);
+
+            await _learningSessionRepository.SaveAsync(learningSession);
+        }
+
+        public async Task<IReadOnlyCollection<FactDto>> LoadFactsAsync(string learningSessionId)
         {
             var learningSession = await _learningSessionRepository.LoadByIdAsync(learningSessionId);
             if (learningSession.FactIds == null || !learningSession.FactIds.Any())
             {
-                return new List<LearningSessionRunFactDto>();
+                return new List<FactDto>();
             }
 
             var facts = await _factRepository.LoadAsync(f => learningSession.FactIds.Contains(f.Id));
-            var result = _mapper.Map<List<LearningSessionRunFactDto>>(facts);
+            var result = _mapper.Map<List<FactDto>>(facts);
 
             return result;
         }
 
-        public async Task UpdateLearningSessionEditAsync(LearningSessionEditDto dto)
+        public async Task<LearningSessionDto> UpdateLearningSessionAsync(LearningSessionDto dto)
         {
             Guard.StringNotNullOrEmpty(() => dto.Id);
 
             var learningSession = await _learningSessionRepository.LoadByIdAsync(dto.Id);
             _mapper.Map(dto, learningSession);
 
-            learningSession.AlignFacts(dto.FactIds);
-
-            await _learningSessionRepository.SaveAsync(learningSession);
+            var learningSessionFromDb = await _learningSessionRepository.SaveAsync(learningSession);
+            var result = _mapper.Map<LearningSessionDto>(learningSessionFromDb);
+            return result;
         }
     }
 }

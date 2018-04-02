@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Mmu.Mls2.WebApi.Areas.Application.Dtos;
 using Mmu.Mls2.WebApi.Areas.Application.Services;
@@ -13,10 +14,10 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
         public LearningSessionsController(ILearningSessionService learningSessionService) => _learningSessionService = learningSessionService;
 
         [HttpPost]
-        public async Task<IActionResult> CreateLearningSessionAsync([FromBody] NewLearningSessionDto dto)
+        public async Task<IActionResult> CreateLearningSessionAsync([FromBody] LearningSessionDto dto)
         {
-            await _learningSessionService.CreateLearningSessionAsync(dto);
-            return Ok();
+            var createdlearningSession = await _learningSessionService.CreateLearningSessionAsync(dto);
+            return Ok(createdlearningSession);
         }
 
         [HttpDelete("{id}")]
@@ -26,32 +27,39 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
             return Ok();
         }
 
-        [HttpGet("{id}/Edit")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetLearningSessionByIdAsync([FromRoute] string id)
         {
-            var factDto = await _learningSessionService.LoadLearningSessionEditByIdAsync(id);
+            var factDto = await _learningSessionService.LoadLearningSessionByIdAsync(id);
             return Ok(factDto);
         }
 
-        [HttpGet("Overview")]
-        public async Task<IActionResult> GetLearningSessionOverviewEntriesAsync()
+        [HttpGet]
+        public async Task<IActionResult> GetAllLearningSessionsAsync()
         {
-            var allFactDtos = await _learningSessionService.LoadAllOverviewEntriesAsync();
+            var allFactDtos = await _learningSessionService.LoadAllLearningSessionAsync();
             return Ok(allFactDtos);
         }
 
-        [HttpGet("{id}/Run")]
-        public async Task<IActionResult> LeadLearningSessionRunFacts([FromRoute] string id)
+        [HttpGet("{id}/Facts")]
+        public async Task<IActionResult> LoadLearningSessionFactsAsync([FromRoute] string id)
         {
-            var dtos = await _learningSessionService.LoadLearningSessionRunFactsAsync(id);
+            var dtos = await _learningSessionService.LoadFactsAsync(id);
             return Ok(dtos);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateLearningSessionEditAsync([FromBody] LearningSessionEditDto dto)
+        [HttpPut("{id}/Facts")]
+        public async Task<IActionResult> UpdateLearningSessionFactsAsync([FromRoute] string id, [FromBody] List<FactDto> factDtos)
         {
-            await _learningSessionService.UpdateLearningSessionEditAsync(dto);
+            await _learningSessionService.UpdateFactsAsync(id, factDtos);
             return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateLearningSessionAsync([FromBody] LearningSessionDto dto)
+        {
+            var updatedLearningSession = await _learningSessionService.UpdateLearningSessionAsync(dto);
+            return Ok(updatedLearningSession);
         }
     }
 }

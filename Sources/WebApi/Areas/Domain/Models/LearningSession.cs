@@ -14,7 +14,7 @@ namespace Mmu.Mls2.WebApi.Areas.Domain.Models
             _factIds = new List<string>();
         }
 
-        public IReadOnlyCollection<string> FactIds { get; private set; }
+        public IReadOnlyCollection<string> FactIds => _factIds;
         public string SessionName { get; set; }
 
         public void AlignFacts(IReadOnlyCollection<string> newFactIds)
@@ -25,16 +25,8 @@ namespace Mmu.Mls2.WebApi.Areas.Domain.Models
                 return;
             }
 
-            foreach (var existingFactId in _factIds)
-            {
-                var factIdsToRemove = new List<string>();
-                if (newFactIds.All(f => f != existingFactId))
-                {
-                    factIdsToRemove.Add(existingFactId);
-                }
-
-                _factIds.RemoveAll(f => factIdsToRemove.Contains(f));
-            }
+            var factIdsToRemove = _factIds.Where(existingFactId => newFactIds.All(f => f != existingFactId)).ToList();
+            _factIds.RemoveAll(f => factIdsToRemove.Contains(f));
 
             foreach (var newFactId in newFactIds)
             {

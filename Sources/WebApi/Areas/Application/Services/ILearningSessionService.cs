@@ -6,16 +6,18 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services
 {
     public interface ILearningSessionService
     {
-        Task CreateLearningSessionAsync(NewLearningSessionDto dto);
+        Task<LearningSessionDto> CreateLearningSessionAsync(LearningSessionDto dto);
 
         Task DeleteLearningSessionAsync(string id);
 
-        Task<IReadOnlyCollection<LearningSessionOverviewEntryDto>> LoadAllOverviewEntriesAsync();
+        Task<IReadOnlyCollection<LearningSessionDto>> LoadAllLearningSessionAsync();
 
-        Task<LearningSessionEditDto> LoadLearningSessionEditByIdAsync(string id);
+        Task<IReadOnlyCollection<FactDto>> LoadFactsAsync(string learningSessionId);
 
-        Task<IReadOnlyCollection<LearningSessionRunFactDto>> LoadLearningSessionRunFactsAsync(string learningSessionId);
+        Task<LearningSessionDto> LoadLearningSessionByIdAsync(string id);
 
-        Task UpdateLearningSessionEditAsync(LearningSessionEditDto dto);
+        Task UpdateFactsAsync(string learningSessionId, IReadOnlyCollection<FactDto> facts);
+
+        Task<LearningSessionDto> UpdateLearningSessionAsync(LearningSessionDto dto);
     }
 }
