@@ -6,9 +6,12 @@
     <Features>IOperation</Features>
     <CodeAnalysisRuleSet>..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
     <AssemblyName>Mmu.Mls2.WebApi</AssemblyName>
-    <AssemblyVersion>1.0.6.0</AssemblyVersion>
-    <FileVersion>1.0.6.0</FileVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</AssemblyVersion>
+    <FileVersion Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</FileVersion>
+    <Version Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(Build.BuildNumber)</Version>
+    <AssemblyVersion Condition="'$(BUILD_BUILDNUMBER)' == '' ">1.0.0.0</AssemblyVersion>
+    <FileVersion Condition="'$(BUILD_BUILDNUMBER)' == '' ">1.0.0.0</FileVersion>
+    <Version Condition="'$(BUILD_BUILDNUMBER)' == '' ">1.0.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
