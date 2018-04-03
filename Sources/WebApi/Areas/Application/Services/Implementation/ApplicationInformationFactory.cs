@@ -10,7 +10,7 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
             var result = new ApplicationInformationDto
             {
                 ApplicationVersion = applicationVersion,
-                ApplicationTitle = "MLS 2"
+                ApplicationTitle = "MLS 3"
             };
 
             return result;
