@@ -5,6 +5,10 @@
     <StartupObject>Mmu.Mls2.WebApi.Infrastructure.Application.Initialization.Program</StartupObject>
     <Features>IOperation</Features>
     <CodeAnalysisRuleSet>..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
+    <AssemblyName>Mmu.Mls2.WebApi</AssemblyName>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <FileVersion>1.0.6.0</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
