@@ -34,8 +34,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.Application.Initialization.Handlers
                         });
 
                     config.For<IRepositoryFactory>().Use<RepositoryFactory>().Singleton();
-                    config.For<IDataMappingInitializationService>().Use<DataMappingInitializationService>().Singleton();
-                    config.For<IMongoClientFactory>().Use<MongoClientFactory>().Singleton();
+
                     config.For<IHttpContextAccessor>().Use<HttpContextAccessor>().Singleton();
                 });
 
