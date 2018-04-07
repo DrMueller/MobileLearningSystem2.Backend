@@ -7,7 +7,10 @@ namespace Mmu.Mls2.WebApi.Infrastructure.LanguageExtensions.Maybes.Implementatio
     {
         private readonly T _content;
 
-        public SomeMaybe(T content) => _content = content;
+        public SomeMaybe(T content)
+        {
+            _content = content;
+        }
 
         public override IEnumerable<T> AsEnumerable() => new[] { _content };
 

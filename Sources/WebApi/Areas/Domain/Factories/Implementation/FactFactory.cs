@@ -8,13 +8,20 @@ namespace Mmu.Mls2.WebApi.Areas.Domain.Factories.Implementation
     {
         private readonly IEntityIdFactory _entityIdFactory;
 
-        public FactFactory(IEntityIdFactory entityIdFactory) => _entityIdFactory = entityIdFactory;
+        public FactFactory(IEntityIdFactory entityIdFactory)
+        {
+            _entityIdFactory = entityIdFactory;
+        }
 
         public Fact CreateFact(string questionText, string answerText)
         {
             var entityId = _entityIdFactory.CreateEntityId();
-            var result = new Fact(entityId, questionText, answerText, DateTime.Now);
+            return CreateFact(entityId, questionText, answerText);
+        }
 
+        public Fact CreateFact(string id, string questionText, string answerText)
+        {
+            var result = new Fact(id, questionText, answerText, DateTime.Now);
             return result;
         }
     }

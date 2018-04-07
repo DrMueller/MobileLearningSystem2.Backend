@@ -1,9 +1,9 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
-using Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Models;
+﻿using Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Models;
 using Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Services;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Abstractions;
 using MongoDB.Driver;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers.Implemention
+namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services.Handlers.Implemention
 {
     public class MongoDbAccess : IMongoDbAccess
     {
@@ -17,7 +17,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers.Implem
         }
 
         public IMongoCollection<T> GetDatabaseCollection<T>()
-            where T : AggregateRoot
+            where T : BaseDataModel
         {
             var db = GetDatabase();
             var result = db.GetCollection<T>(_mongoDbSettings.CollectionName);

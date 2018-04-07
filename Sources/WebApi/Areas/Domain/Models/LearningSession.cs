@@ -14,7 +14,14 @@ namespace Mmu.Mls2.WebApi.Areas.Domain.Models
             _factIds = new List<string>();
         }
 
-        public IReadOnlyCollection<string> FactIds => _factIds;
+        public IReadOnlyCollection<string> FactIds
+        {
+            get
+            {
+                return _factIds;
+            }
+        }
+
         public string SessionName { get; set; }
 
         public void AlignFacts(IReadOnlyCollection<string> newFactIds)

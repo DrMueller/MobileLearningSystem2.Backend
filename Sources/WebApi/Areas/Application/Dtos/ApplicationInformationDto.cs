@@ -1,9 +1,8 @@
-﻿namespace Mmu.Mls2.WebApi.Areas.Domain.Models
+﻿namespace Mmu.Mls2.WebApi.Areas.Application.Dtos
 {
     public class ApplicationInformationDto
     {
-        public string ApplicationVersion { get; set; }
-
         public string ApplicationTitle { get; set; }
+        public string ApplicationVersion { get; set; }
     }
 }

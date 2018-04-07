@@ -7,7 +7,10 @@ namespace Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Services.Implement
     {
         private readonly IOptions<AppSettings> _appSettingsOptions;
 
-        public AppSettingsProvider(IOptions<AppSettings> appSettingsOptions) => _appSettingsOptions = appSettingsOptions;
+        public AppSettingsProvider(IOptions<AppSettings> appSettingsOptions)
+        {
+            _appSettingsOptions = appSettingsOptions;
+        }
 
         public AppSettings GetAppSettings() => _appSettingsOptions.Value;
     }

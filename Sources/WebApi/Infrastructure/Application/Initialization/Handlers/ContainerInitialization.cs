@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataMapping;
 using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataMapping.Implementation;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services.Handlers;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services.Handlers.Implemention;
 using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories;
-using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers;
-using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers.Implemention;
-using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementation;
 using StructureMap;
 
 namespace Mmu.Mls2.WebApi.Infrastructure.Application.Initialization.Handlers
@@ -26,6 +27,8 @@ namespace Mmu.Mls2.WebApi.Infrastructure.Application.Initialization.Handlers
 
                             scan.AddAllTypesOf(typeof(IRepository<>));
                             scan.AddAllTypesOf(typeof(IMongoDbFilterDefinitionFactory<>));
+                            scan.AddAllTypesOf(typeof(IDataModelRepository<>));
+                            scan.AddAllTypesOf(typeof(IDataModelAdapter<,>));
                             scan.AddAllTypesOf<IDataMapper>();
                             scan.WithDefaultConventions();
                         });

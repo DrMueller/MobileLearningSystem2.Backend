@@ -10,7 +10,10 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
     {
         private readonly IFactService _factService;
 
-        public FactsController(IFactService factService) => _factService = factService;
+        public FactsController(IFactService factService)
+        {
+            _factService = factService;
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateFactAsync([FromBody] FactDto dto)

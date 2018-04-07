@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Abstractions;
 using MongoDB.Driver;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers.Implemention
+namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services.Handlers.Implemention
 {
     public class MongoDbFilterDefinitionFactory<T> : IMongoDbFilterDefinitionFactory<T>
-        where T : AggregateRoot
+        where T : BaseDataModel
     {
         public FilterDefinition<T> CreateFilterDefinition(Expression<Func<T, bool>> predicate)
         {
@@ -17,7 +17,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers.Implem
 
         private static FilterDefinition<T> CreateEntityTypeFilterDefinition()
         {
-            var entityTypeFilter = new ExpressionFilterDefinition<T>(x => x.AggregateTypeName == typeof(T).FullName);
+            var entityTypeFilter = new ExpressionFilterDefinition<T>(x => x.DataModelTypeName == typeof(T).FullName);
             return entityTypeFilter;
         }
     }

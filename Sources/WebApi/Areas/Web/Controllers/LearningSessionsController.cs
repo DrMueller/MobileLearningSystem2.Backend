@@ -11,7 +11,10 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
     {
         private readonly ILearningSessionService _learningSessionService;
 
-        public LearningSessionsController(ILearningSessionService learningSessionService) => _learningSessionService = learningSessionService;
+        public LearningSessionsController(ILearningSessionService learningSessionService)
+        {
+            _learningSessionService = learningSessionService;
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateLearningSessionAsync([FromBody] LearningSessionDto dto)
@@ -27,18 +30,18 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
             return Ok();
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetLearningSessionByIdAsync([FromRoute] string id)
-        {
-            var factDto = await _learningSessionService.LoadLearningSessionByIdAsync(id);
-            return Ok(factDto);
-        }
-
         [HttpGet]
         public async Task<IActionResult> GetAllLearningSessionsAsync()
         {
             var allFactDtos = await _learningSessionService.LoadAllLearningSessionAsync();
             return Ok(allFactDtos);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetLearningSessionByIdAsync([FromRoute] string id)
+        {
+            var factDto = await _learningSessionService.LoadLearningSessionByIdAsync(id);
+            return Ok(factDto);
         }
 
         [HttpGet("{id}/Facts")]
@@ -48,18 +51,18 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
             return Ok(dtos);
         }
 
-        [HttpPut("{id}/Facts")]
-        public async Task<IActionResult> UpdateLearningSessionFactsAsync([FromRoute] string id, [FromBody] List<FactDto> factDtos)
-        {
-            await _learningSessionService.UpdateFactsAsync(id, factDtos);
-            return Ok();
-        }
-
         [HttpPut]
         public async Task<IActionResult> UpdateLearningSessionAsync([FromBody] LearningSessionDto dto)
         {
             var updatedLearningSession = await _learningSessionService.UpdateLearningSessionAsync(dto);
             return Ok(updatedLearningSession);
+        }
+
+        [HttpPut("{id}/Facts")]
+        public async Task<IActionResult> UpdateLearningSessionFactsAsync([FromRoute] string id, [FromBody] List<FactDto> factDtos)
+        {
+            await _learningSessionService.UpdateFactsAsync(id, factDtos);
+            return Ok();
         }
     }
 }

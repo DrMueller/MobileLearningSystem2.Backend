@@ -8,7 +8,10 @@ namespace Mmu.Mls2.WebApi.Infrastructure.Application.Aspects.Logging.Implementat
     {
         private readonly ILoggerProxy _logProxy;
 
-        public LoggingService(ILoggerProxy logProxy) => _logProxy = logProxy;
+        public LoggingService(ILoggerProxy logProxy)
+        {
+            _logProxy = logProxy;
+        }
 
         public void LogException(Exception ex)
         {

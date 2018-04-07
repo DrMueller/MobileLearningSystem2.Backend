@@ -5,7 +5,7 @@ using Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Services;
 using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataMapping;
 using MongoDB.Driver;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers.Implemention
+namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services.Handlers.Implemention
 {
     public class MongoClientFactory : IMongoClientFactory
     {

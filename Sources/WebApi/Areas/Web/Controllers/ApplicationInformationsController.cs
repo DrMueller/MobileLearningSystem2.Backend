@@ -8,7 +8,10 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
     {
         private readonly IApplicationInformationFactory _applicationInformationFactory;
 
-        public ApplicationInformationsController(IApplicationInformationFactory applicationInformationFactory) => _applicationInformationFactory = applicationInformationFactory;
+        public ApplicationInformationsController(IApplicationInformationFactory applicationInformationFactory)
+        {
+            _applicationInformationFactory = applicationInformationFactory;
+        }
 
         [HttpGet]
         public IActionResult GetApplicationInformation()

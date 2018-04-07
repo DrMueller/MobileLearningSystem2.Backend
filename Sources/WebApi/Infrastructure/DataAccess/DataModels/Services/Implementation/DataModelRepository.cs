@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
-using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Handlers;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Abstractions;
+using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services.Handlers;
 using MongoDB.Driver;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion
+namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services.Implementation
 {
-    public class Repository<T> : IRepository<T>
-        where T : AggregateRoot
+    public class DataModelRepository<T> : IDataModelRepository<T>
+        where T : BaseDataModel
     {
-        private readonly IMongoDbFilterDefinitionFactory<T> _filterFactory;
+        private readonly IMongoDbFilterDefinitionFactory<T> _filterDefinitionFactory;
         private readonly IMongoDbAccess _mongoDbAccess;
 
-        public Repository(IMongoDbAccess mongoDbAccess, IMongoDbFilterDefinitionFactory<T> filterFactory)
+        public DataModelRepository(IMongoDbAccess mongoDbAccess, IMongoDbFilterDefinitionFactory<T> filterDefinitionFactory)
         {
             _mongoDbAccess = mongoDbAccess;
-            _filterFactory = filterFactory;
+            _filterDefinitionFactory = filterDefinitionFactory;
         }
 
         public Task DeleteAsync(string id)
@@ -27,27 +27,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion
             return collection.DeleteOneAsync(x => x.Id == id);
         }
 
-        public Task<IReadOnlyCollection<T>> LoadAllAsync()
-        {
-            var result = LoadByExpressionAsync(x => true);
-            return result;
-        }
-
-        public async Task<IReadOnlyCollection<T>> LoadAsync(Expression<Func<T, bool>> predicate)
-        {
-            var collection = _mongoDbAccess.GetDatabaseCollection<T>();
-
-            var filter = _filterFactory.CreateFilterDefinition(predicate);
-            var result = await collection.Find(filter).ToListAsync();
-            return result;
-        }
-
-        public async Task<T> LoadByIdAsync(string id)
-        {
-            var entries = await LoadByExpressionAsync(x => x.Id == id);
-            var result = entries.SingleOrDefault();
-            return result;
-        }
+        public async Task<IReadOnlyCollection<T>> LoadAsync(Expression<Func<T, bool>> predicate) => await LoadByExpressionAsync(predicate);
 
         public async Task<T> LoadSingleAsync(Expression<Func<T, bool>> predicate)
         {
@@ -60,7 +40,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion
         {
             var collection = _mongoDbAccess.GetDatabaseCollection<T>();
 
-            var filter = _filterFactory.CreateFilterDefinition(x => x.Id == aggregateRoot.Id);
+            var filter = _filterDefinitionFactory.CreateFilterDefinition(x => x.Id == aggregateRoot.Id);
             var updateOptions = new FindOneAndReplaceOptions<T> { IsUpsert = true, ReturnDocument = ReturnDocument.After };
             var result = await collection.FindOneAndReplaceAsync(filter, aggregateRoot, updateOptions);
             return result;
@@ -70,7 +50,7 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories.Implementatrion
         {
             var collection = _mongoDbAccess.GetDatabaseCollection<T>();
 
-            var filter = _filterFactory.CreateFilterDefinition(predicate);
+            var filter = _filterDefinitionFactory.CreateFilterDefinition(predicate);
             var result = await collection.Find(filter).ToListAsync();
             return result;
         }

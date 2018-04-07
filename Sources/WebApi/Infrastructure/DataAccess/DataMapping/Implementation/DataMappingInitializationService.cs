@@ -10,7 +10,10 @@ namespace Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataMapping.Implementation
         private readonly IReadOnlyCollection<IDataMapper> _dataMappers;
         private readonly object _lock = new object();
 
-        public DataMappingInitializationService(IProvisioningService provisioningService) => _dataMappers = provisioningService.GetAllServices<IDataMapper>();
+        public DataMappingInitializationService(IProvisioningService provisioningService)
+        {
+            _dataMappers = provisioningService.GetAllServices<IDataMapper>();
+        }
 
         public void AssureMappingsAreInitialized()
         {

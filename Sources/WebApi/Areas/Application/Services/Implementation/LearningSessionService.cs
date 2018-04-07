@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 using Mmu.Mls2.WebApi.Areas.Application.Dtos;
+using Mmu.Mls2.WebApi.Areas.DataAccess.Repositories;
 using Mmu.Mls2.WebApi.Areas.Domain.Factories;
 using Mmu.Mls2.WebApi.Areas.Domain.Models;
 using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories;
@@ -12,7 +13,7 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
 {
     public class LearningSessionService : ILearningSessionService
     {
-        private readonly IRepository<Fact> _factRepository;
+        private readonly IFactRepository _factRepository;
         private readonly ILearningSessionFactory _learningSessionFactory;
         private readonly IRepository<LearningSession> _learningSessionRepository;
         private readonly IMapper _mapper;
@@ -21,7 +22,7 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
             IMapper mapper,
             ILearningSessionFactory learningSessionFactory,
             IRepository<LearningSession> learningSessionRepository,
-            IRepository<Fact> factRepository)
+            IFactRepository factRepository)
         {
             _mapper = mapper;
             _learningSessionFactory = learningSessionFactory;
@@ -52,6 +53,20 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
             return result;
         }
 
+        public async Task<IReadOnlyCollection<FactDto>> LoadFactsAsync(string learningSessionId)
+        {
+            var learningSession = await _learningSessionRepository.LoadByIdAsync(learningSessionId);
+            if (learningSession.FactIds == null || !learningSession.FactIds.Any())
+            {
+                return new List<FactDto>();
+            }
+
+            var facts = await _factRepository.LoadFactsByIds(learningSession.FactIds);
+            var result = _mapper.Map<List<FactDto>>(facts);
+
+            return result;
+        }
+
         public async Task<LearningSessionDto> LoadLearningSessionByIdAsync(string id)
         {
             var learningSession = await _learningSessionRepository.LoadByIdAsync(id);
@@ -69,20 +84,6 @@ namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
             learningSession.AlignFacts(factIds);
 
             await _learningSessionRepository.SaveAsync(learningSession);
-        }
-
-        public async Task<IReadOnlyCollection<FactDto>> LoadFactsAsync(string learningSessionId)
-        {
-            var learningSession = await _learningSessionRepository.LoadByIdAsync(learningSessionId);
-            if (learningSession.FactIds == null || !learningSession.FactIds.Any())
-            {
-                return new List<FactDto>();
-            }
-
-            var facts = await _factRepository.LoadAsync(f => learningSession.FactIds.Contains(f.Id));
-            var result = _mapper.Map<List<FactDto>>(facts);
-
-            return result;
         }
 
         public async Task<LearningSessionDto> UpdateLearningSessionAsync(LearningSessionDto dto)
