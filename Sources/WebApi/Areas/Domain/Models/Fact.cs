@@ -1,5 +1,5 @@
 ﻿using System;
-using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
+using Mmu.Mlh.DomainExtensions.Areas.DomainModeling;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 
 namespace Mmu.Mls2.WebApi.Areas.Domain.Models

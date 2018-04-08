@@ -2,12 +2,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Mmu.Mlh.DataAccess.Areas.Repositories;
+using Mmu.Mlh.DomainExtensions.Areas.Repositories;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 using Mmu.Mls2.WebApi.Areas.Application.Dtos;
 using Mmu.Mls2.WebApi.Areas.DataAccess.Repositories;
 using Mmu.Mls2.WebApi.Areas.Domain.Factories;
 using Mmu.Mls2.WebApi.Areas.Domain.Models;
-using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories;
 
 namespace Mmu.Mls2.WebApi.Areas.Application.Services.Implementation
 {

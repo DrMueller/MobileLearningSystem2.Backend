@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Mmu.Mlh.LanguageExtensions.Areas.DomainModels;
+using Mmu.Mlh.DomainExtensions.Areas.DomainModeling;
 
 namespace Mmu.Mls2.WebApi.Areas.Domain.Models
 {

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Mmu.Mls2.WebApi.Areas.DataAccess.Repositories.DataModels.Models;
+using Mmu.Mlh.DataAccess.Areas.DataModeling.Services;
+using Mmu.Mls2.WebApi.Areas.DataAccess.Repositories.DataModeling.Models;
 using Mmu.Mls2.WebApi.Areas.Domain.Factories;
 using Mmu.Mls2.WebApi.Areas.Domain.Models;
-using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services;
 
-namespace Mmu.Mls2.WebApi.Areas.DataAccess.Repositories.DataModels.Adapter
+namespace Mmu.Mls2.WebApi.Areas.DataAccess.Repositories.DataModeling.Adapter
 {
     public class FactDataModelAdapter : IDataModelAdapter<FactDataModel, Fact>
     {

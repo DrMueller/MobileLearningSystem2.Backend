@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Mmu.Mls2.WebApi.Areas.DataAccess.Repositories.DataModels.Models;
+using Mmu.Mlh.DataAccess.Areas.DatabaseAccess.Services;
+using Mmu.Mlh.DataAccess.Areas.DataModeling.Services;
+using Mmu.Mlh.DataAccess.Areas.Repositories;
+using Mmu.Mls2.WebApi.Areas.DataAccess.Repositories.DataModeling.Models;
 using Mmu.Mls2.WebApi.Areas.Domain.Models;
-using Mmu.Mls2.WebApi.Infrastructure.DataAccess.DataModels.Services;
-using Mmu.Mls2.WebApi.Infrastructure.DataAccess.Repositories;
 
 namespace Mmu.Mls2.WebApi.Areas.DataAccess.Repositories.Implementation
 {

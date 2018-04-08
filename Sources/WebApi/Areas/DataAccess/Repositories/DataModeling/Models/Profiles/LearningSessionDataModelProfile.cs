@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Mmu.Mls2.WebApi.Areas.Domain.Models;
 
-namespace Mmu.Mls2.WebApi.Areas.DataAccess.Repositories.DataModels.Models.Profiles
+namespace Mmu.Mls2.WebApi.Areas.DataAccess.Repositories.DataModeling.Models.Profiles
 {
     public class LearningSessionDataModelProfile : Profile
     {
