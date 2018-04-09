@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
-using Mmu.Mls2.WebApi.Infrastructure.Application.Middlewares;
+using Mmu.Mls2.WebApi.Infrastructure.Middlewares;
 using NLog.Extensions.Logging;
 using NLog.Web;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.Application.Initialization
+namespace Mmu.Mls2.WebApi.Infrastructure.Initialization
 {
     internal static class AppInitialization
     {

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.Application.Initialization
+namespace Mmu.Mls2.WebApi.Infrastructure.Initialization
 {
     public class Startup
     {

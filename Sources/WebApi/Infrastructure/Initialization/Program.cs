@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.Application.Initialization
+namespace Mmu.Mls2.WebApi.Infrastructure.Initialization
 {
     public static class Program
     {

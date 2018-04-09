@@ -2,11 +2,11 @@
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Mmu.Mls2.WebApi.Infrastructure.Application.Aspects.Logging;
+using Mmu.Mlh.ApplicationExtensions.Areas.Logging.Services;
 using Mmu.Mls2.WebApi.Infrastructure.ServiceProvisioning;
 using Newtonsoft.Json;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.Application.Middlewares
+namespace Mmu.Mls2.WebApi.Infrastructure.Middlewares
 {
     public class ErrorHandlingMiddleware
     {

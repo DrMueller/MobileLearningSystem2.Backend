@@ -2,12 +2,12 @@
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Mmu.Mls2.WebApi.Infrastructure.Application.Initialization.Handlers;
-using Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Models;
+using Mmu.Mls2.WebApi.Infrastructure.Initialization.Handlers;
 using Mmu.Mls2.WebApi.Infrastructure.ServiceProvisioning;
+using Mmu.Mls2.WebApi.Infrastructure.Settings.Models;
 using StructureMap;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.Application.Initialization
+namespace Mmu.Mls2.WebApi.Infrastructure.Initialization
 {
     internal static class ServiceInitialization
     {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Mmu.Mlh.ApplicationExtensions.Areas.Logging.Services;
 using Mmu.Mls2.WebApi.Areas.Application.Services;
 
 namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
@@ -8,7 +9,8 @@ namespace Mmu.Mls2.WebApi.Areas.Web.Controllers
     {
         private readonly IApplicationInformationFactory _applicationInformationFactory;
 
-        public ApplicationInformationsController(IApplicationInformationFactory applicationInformationFactory)
+        public ApplicationInformationsController(
+            IApplicationInformationFactory applicationInformationFactory)
         {
             _applicationInformationFactory = applicationInformationFactory;
         }

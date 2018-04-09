@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <StartupObject>Mmu.Mls2.WebApi.Infrastructure.Application.Initialization.Program</StartupObject>
+    <StartupObject>Mmu.Mls2.WebApi.Infrastructure.Initialization.Program</StartupObject>
     <Features>IOperation</Features>
     <CodeAnalysisRuleSet>..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
     <AssemblyName>Mmu.Mls2.WebApi</AssemblyName>
@@ -15,6 +15,11 @@
     <UserSecretsId>09b76cb4-6114-4f89-be21-b6677fb07ca1</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
@@ -25,9 +30,10 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.0.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
-    <PackageReference Include="Mmu.Mlh.DataAccess" Version="1.0.9" />
-    <PackageReference Include="Mmu.Mlh.DomainExtensions" Version="1.0.11" />
-    <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="1.1.34" />
+    <PackageReference Include="Mmu.Mlh.ApplicationExtensions" Version="1.0.5" />
+    <PackageReference Include="Mmu.Mlh.DataAccess" Version="1.0.10" />
+    <PackageReference Include="Mmu.Mlh.DomainExtensions" Version="1.0.12" />
+    <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="1.2.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.5.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.1" />
     <PackageReference Include="StructureMap" Version="4.6.1" />

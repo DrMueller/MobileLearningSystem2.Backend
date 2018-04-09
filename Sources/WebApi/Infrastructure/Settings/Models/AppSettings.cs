@@ -1,6 +1,6 @@
 ﻿using Mmu.Mlh.DataAccess.Areas.DatabaseAccess.Models;
 
-namespace Mmu.Mls2.WebApi.Infrastructure.Application.Settings.Models
+namespace Mmu.Mls2.WebApi.Infrastructure.Settings.Models
 {
     public class AppSettings
     {

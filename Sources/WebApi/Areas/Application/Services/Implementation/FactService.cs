@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Mmu.Mlh.DataAccess.Areas.Repositories;
 using Mmu.Mlh.DomainExtensions.Areas.Repositories;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 using Mmu.Mls2.WebApi.Areas.Application.Dtos;

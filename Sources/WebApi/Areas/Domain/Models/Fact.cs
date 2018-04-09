@@ -19,8 +19,8 @@ namespace Mmu.Mls2.WebApi.Areas.Domain.Models
             CreationDate = creationDate;
         }
 
-        public string AnswerText { get; }
+        public string AnswerText { get; set; }
         public DateTime CreationDate { get; }
-        public string QuestionText { get; }
+        public string QuestionText { get; set; }
     }
 }
