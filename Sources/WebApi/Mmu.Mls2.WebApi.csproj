@@ -33,7 +33,7 @@
     <PackageReference Include="Mmu.Mlh.ApplicationExtensions" Version="1.0.5" />
     <PackageReference Include="Mmu.Mlh.DataAccess" Version="1.0.10" />
     <PackageReference Include="Mmu.Mlh.DomainExtensions" Version="1.0.12" />
-    <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="1.2.1" />
+    <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="1.2.2" />
     <PackageReference Include="MongoDB.Driver" Version="2.5.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.1" />
     <PackageReference Include="StructureMap" Version="4.6.1" />
