@@ -16,25 +16,8 @@ namespace Mmu.Mls2.WebApi.Infrastructure.Initialization.Handlers
     {
         public static Container CreateInitializedContainer()
         {
-            var result = ContainerInitializationService.CreateInitializedContainer(
-                typeof(ContainerInitialization).Assembly,
-                Maybe<Action<IAssemblyScanner>>.CreateSome(OnScanningForContainer),
-                Maybe<Action<ConfigurationExpression>>.CreateSome(OnConfiguringContainer));
-
+            var result = ContainerInitializationService.CreateInitializedContainer(typeof(ContainerInitialization).Assembly);
             return result;
-        }
-
-        private static void OnConfiguringContainer(ConfigurationExpression configuration)
-        {
-            configuration.For<IHttpContextAccessor>().Use<HttpContextAccessor>().Singleton();
-            configuration.For<IDatabaseSettingsProvider>().Use<AppSettingsProvider>();
-        }
-
-        private static void OnScanningForContainer(IAssemblyScanner scanner)
-        {
-            scanner.AddAllTypesOf(typeof(IRepository<>));
-            scanner.AddAllTypesOf(typeof(IDataModelAdapter<,>));
-            scanner.AddAllTypesOf<IDataMapper>();
         }
     }
 }
