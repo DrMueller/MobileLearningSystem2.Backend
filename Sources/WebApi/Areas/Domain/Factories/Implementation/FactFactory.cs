@@ -1,5 +1,5 @@
 ﻿using System;
-using Mmu.Mlh.DataAccess.Areas.IdGeneration;
+using Mmu.Mlh.DomainExtensions.Areas.Factories;
 using Mmu.Mls2.WebApi.Areas.Domain.Models;
 
 namespace Mmu.Mls2.WebApi.Areas.Domain.Factories.Implementation

@@ -1,0 +1,16 @@
+﻿{
+  "dir": "ltr",
+  "lang": "en-us",
+  "name": "Mobile Learning System 2",
+  "scope": "/",
+  "display": "browser",
+  "start_url": "https://mls2-webui.azurewebsites.net/",
+  "short_name": "MLS2",
+  "theme_color": "transparent",
+  "description": "A mobile learning system",
+  "orientation": "any",
+  "background_color": "transparent",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": []
+}

@@ -14,8 +14,14 @@ namespace Mmu.Mls2.WebApi.Infrastructure.Settings.Services.Implementation
             _appSettingsOptions = appSettingsOptions;
         }
 
-        public AppSettings GetAppSettings() => _appSettingsOptions.Value;
+        public AppSettings ProvideAppSettings()
+        {
+            return _appSettingsOptions.Value;
+        }
 
-        public DatabaseSettings ProvideSettings() => _appSettingsOptions.Value.DatabaseSettings;
+        public DatabaseSettings ProvideDatabaseSettings()
+        {
+            return _appSettingsOptions.Value.DatabaseSettings;
+        }
     }
 }
